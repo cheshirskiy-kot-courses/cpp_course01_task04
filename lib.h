@@ -18,7 +18,7 @@ struct hard
     hard(int fa, int fi): fa(fa), fi(fi) {};
 
     hard(const hard &) = delete;
-    hard(hard &&) = delete;
+    hard(hard &&) noexcept = delete;
 };
 
 constexpr bool operator== (const hard & h0, const hard & h1) noexcept
@@ -45,22 +45,6 @@ void print_map(std::map<int, hard, std::less<int>, Allocator> m)
 
     print_pair(rs::front(m));
     rs::for_each(m | rv::tail, print_pair);
-}
-
-
-template<class Allocator = std::allocator<std::pair<const int, hard>>>
-auto create_map()
-{
-    auto m =
-        rv::iota(0, 10) |
-        rv::transform(
-            [](int x)
-            {
-                return std::pair(x, hard{ factorial(x), fibonacci(x) });
-            }) |
-        rs::to<std::map<int, hard, std::less<int>, Allocator>>;
-
-    return m;
 }
 
 
