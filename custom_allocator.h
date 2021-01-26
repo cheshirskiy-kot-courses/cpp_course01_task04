@@ -68,6 +68,7 @@ struct CustomAllocator
         pool{ other.pool }
     {}
 
+
     template<class U>
     CustomAllocator(const CustomAllocator<U> & other) noexcept:
         pool{ other.pool }
@@ -75,6 +76,12 @@ struct CustomAllocator
 
 
     CustomAllocator(CustomAllocator && other) noexcept:
+        pool{ other.pool }
+    {}
+
+
+    template<class U>
+    CustomAllocator(CustomAllocator<U> && other) noexcept:
         pool{ other.pool }
     {}
 

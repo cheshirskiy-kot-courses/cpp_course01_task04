@@ -18,13 +18,15 @@ MAP_0 create_map_0()
 {
     MAP_0 m;
 
-    for (int i = 0; i < 10; i++) {
-        m.emplace(
-            std::piecewise_construct,
-            std::forward_as_tuple(i),
-            std::forward_as_tuple(factorial(i), fibonacci(i))
-        );
-    }
+    rs::for_each(
+        rv::iota(0, 10),
+        [&m](int i) {
+            m.emplace(
+                std::piecewise_construct,
+                std::forward_as_tuple(i),
+                std::forward_as_tuple(factorial(i), fibonacci(i))
+            );
+        });
 
     return m;
 }
@@ -34,13 +36,15 @@ MAP_1 create_map_1()
 
     MAP_1 m(CA{ 10 });
 
-    for (int i = 0; i < 10; i++) {
-        m.emplace(
-            std::piecewise_construct,
-            std::forward_as_tuple(i),
-            std::forward_as_tuple(factorial(i), fibonacci(i))
-        );
-    }
+    rs::for_each(
+        rv::iota(0, 10),
+        [&m](int i) {
+            m.emplace(
+                std::piecewise_construct,
+                std::forward_as_tuple(i),
+                std::forward_as_tuple(factorial(i), fibonacci(i))
+            );
+        });
 
     return m;
 }
