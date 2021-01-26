@@ -17,7 +17,7 @@ configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
 add_executable(allocator "allocator.cpp")
 
-add_library(allocator_lib "lib.cpp" "custom_allocator.h")
+add_library(allocator_lib "lib.cpp" "custom_allocator.h" "custom_container.h")
 
 add_executable(test_allocator "test_allocator.cpp")
 

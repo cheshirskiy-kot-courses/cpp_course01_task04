@@ -34,7 +34,7 @@ MAP_0 create_map_0()
 MAP_1 create_map_1()
 {
 
-    MAP_1 m(CA{ 10 });
+    MAP_1 m(CA_1{ 10 });
 
     rs::for_each(
         rv::iota(0, 10),
@@ -45,6 +45,28 @@ MAP_1 create_map_1()
                 std::forward_as_tuple(factorial(i), fibonacci(i))
             );
         });
+
+    return m;
+}
+
+MAP_2 create_map_2()
+{
+    MAP_2 m;
+
+    rs::for_each(
+        rv::iota(0, 10),
+        [&m](int i) { m.emplace(factorial(i), fibonacci(i)); });
+
+    return m;
+}
+
+MAP_3 create_map_3()
+{
+    MAP_3 m(CA_3{ 10 });
+
+    rs::for_each(
+        rv::iota(0, 10),
+        [&m](int i) { m.emplace(factorial(i), fibonacci(i)); });
 
     return m;
 }
