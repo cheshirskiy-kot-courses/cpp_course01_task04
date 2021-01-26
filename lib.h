@@ -32,9 +32,8 @@ int factorial(const int N);
 int fibonacci(const int N);
 
 
-template<
-    template<class ...> class Container, class ...Parameters>
-void print_map(const Container<Parameters...> & m)
+template<class Alloc>
+void print_map(const std::map<int, hard, std::less<int>, Alloc> & m)
 {
     rs::for_each(m, [](auto & p) {
             std::cout
@@ -43,6 +42,20 @@ void print_map(const Container<Parameters...> & m)
                 << p.second.fi
                 << std::endl;
         });
+    std::cout << std::endl;
+}
+
+
+template<class Alloc>
+void print_custom_container(const CustomContainer<hard, Alloc> & m)
+{
+    rs::for_each(m, [](auto & p) {
+        std::cout
+            << p.fa << " "
+            << p.fi
+            << std::endl;
+        });
+    std::cout << std::endl;
 }
 
 

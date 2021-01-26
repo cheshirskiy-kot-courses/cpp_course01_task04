@@ -26,10 +26,18 @@ public:
     class iterator
     {
     public:
-        iterator(Node<T> * ptr): ptr(ptr) {}
-        iterator operator++() { ptr = ptr->next; return *this; }
+        using difference_type = std::ptrdiff_t;
+        using value_type = T;
+        using pointer = T *;
+        using reference = T &;
+        using iterator_category = std::forward_iterator_tag;
+
+        iterator(Node<T> * ptr = nullptr): ptr{ ptr } {}
+        iterator & operator++() { ptr = ptr->next; return *this; }
+        iterator operator++(int) { auto i = *this; ptr = ptr->next; return i; }
+        reference operator*() const { return ptr->data; }
+        bool operator==(const iterator & other) const { return ptr == other.ptr; }
         bool operator!=(const iterator & other) const { return ptr != other.ptr; }
-        T & operator*() const { return ptr->data; }
     private:
         Node<T> * ptr;
     };

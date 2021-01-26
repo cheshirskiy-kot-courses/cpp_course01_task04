@@ -6,30 +6,22 @@ int main(int argc, char const * argv[])
     {
         // создание экземпляра std::map<int, hard>
         print_map(create_map_0());
-        std::cout << std::endl;
     }
 
     {
         // создание экземпляра std::map<int, hard>
         // с новым аллокатором ограниченным 10 элементами
         print_map(create_map_1());
-        std::cout << std::endl;
     }
 
     {
         // создание экземпляра своего контейнера для хранения hard
-        for (auto & e : create_map_2()) {
-            std::cout << e.fa << " " << e.fi << std::endl;
-        }
-        std::cout << std::endl;
+        print_custom_container(create_map_2());
     }
 
     {
         // создание экземпляра своего контейнера для хранения hard
         // с новым аллокатором ограниченным 10 элементами
-        for (auto & e : create_map_3()) {
-            std::cout << e.fa << " " << e.fi << std::endl;
-        }
-        std::cout << std::endl;
+        print_custom_container(create_map_3());
     }
 }
