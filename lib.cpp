@@ -14,59 +14,30 @@ int fibonacci(const int N)
     else return fibonacci(N - 1) + fibonacci(N - 2);
 }
 
-MAP_0 create_map_0()
+Map_0 create_map_0()
 {
-    MAP_0 m;
-
-    rs::for_each(
-        rv::iota(0, 10),
-        [&m](int i) {
-            m.emplace(
-                std::piecewise_construct,
-                std::forward_as_tuple(i),
-                std::forward_as_tuple(factorial(i), fibonacci(i))
-            );
-        });
-
+    Map_0 m;
+    generate_map(m);
     return m;
 }
 
-MAP_1 create_map_1()
+Map_1 create_map_1()
 {
-
-    MAP_1 m(CA_1{ 10 });
-
-    rs::for_each(
-        rv::iota(0, 10),
-        [&m](int i) {
-            m.emplace(
-                std::piecewise_construct,
-                std::forward_as_tuple(i),
-                std::forward_as_tuple(factorial(i), fibonacci(i))
-            );
-        });
-
+    Map_1 m(CA_0{ 9 });
+    generate_map(m);
     return m;
 }
 
-MAP_2 create_map_2()
+Container_0 create_container_0()
 {
-    MAP_2 m;
-
-    rs::for_each(
-        rv::iota(0, 10),
-        [&m](int i) { m.emplace(factorial(i), fibonacci(i)); });
-
+    Container_0 m;
+    generate_container(m);
     return m;
 }
 
-MAP_3 create_map_3()
+Container_1 create_container_1()
 {
-    MAP_3 m(CA_3{ 10 });
-
-    rs::for_each(
-        rv::iota(0, 10),
-        [&m](int i) { m.emplace(factorial(i), fibonacci(i)); });
-
+    Container_1 m(CA_1{ 9 });
+    generate_container(m);
     return m;
 }

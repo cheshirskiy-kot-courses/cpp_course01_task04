@@ -50,4 +50,34 @@ BOOST_AUTO_TEST_CASE(test_custom_alloc)
     BOOST_CHECK(rs::equal(out, test_out));
 }
 
+BOOST_AUTO_TEST_CASE(test_custom_container_def_alloc)
+{
+    auto out = create_container_0();
+    auto gen_map = generate_m();
+
+    auto rng = rv::zip(out, gen_map | rv::values);
+
+    auto res = true;
+    for (auto && [first, second] : rng) {
+        res &= (first == second);
+    }
+
+    BOOST_CHECK(res);
+}
+
+BOOST_AUTO_TEST_CASE(test_custom_container_custom_alloc)
+{
+    auto out = create_container_1();
+    auto gen_map = generate_m();
+
+    auto rng = rv::zip(out, gen_map | rv::values);
+
+    auto res = true;
+    for (auto && [first, second] : rng) {
+        res &= (first == second);
+    }
+
+    BOOST_CHECK(res);
+}
+
 BOOST_AUTO_TEST_SUITE_END()

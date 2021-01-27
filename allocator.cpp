@@ -16,12 +16,12 @@ int main(int argc, char const * argv[])
 
     {
         // создание экземпляра своего контейнера для хранения hard
-        print_custom_container(create_map_2());
+        print_custom_container(create_container_0());
     }
 
     {
         // создание экземпляра своего контейнера для хранения hard
         // с новым аллокатором ограниченным 10 элементами
-        print_custom_container(create_map_3());
+        print_custom_container(create_container_1());
     }
 }

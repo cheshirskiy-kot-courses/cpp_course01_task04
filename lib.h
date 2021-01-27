@@ -59,17 +59,41 @@ void print_custom_container(const CustomContainer<hard, Alloc> & m)
 }
 
 
-using MAP_0 = std::map<int, hard>;
+template<class Alloc>
+void generate_map(std::map<int, hard, std::less<int>, Alloc> & m)
+{
+    rs::for_each(
+        rv::iota(0, 10),
+        [&m](int i) {
+            m.emplace(
+                std::piecewise_construct,
+                std::forward_as_tuple(i),
+                std::forward_as_tuple(factorial(i), fibonacci(i))
+            );
+        });
+}
 
-using CA_1 = CustomAllocator < std::pair<const int, hard>>;
-using MAP_1 = std::map<int, hard, std::less<int>, CA_1>;
 
-using MAP_2 = CustomContainer<hard>;
+template<class Alloc>
+void generate_container(CustomContainer<hard, Alloc> & m)
+{
+    rs::for_each(
+        rv::iota(0, 10),
+        [&m](int i) { m.emplace(factorial(i), fibonacci(i)); });
+}
 
-using CA_3 = CustomAllocator<hard>;
-using MAP_3 = CustomContainer<hard, CA_3>;
 
-MAP_0 create_map_0();
-MAP_1 create_map_1();
-MAP_2 create_map_2();
-MAP_3 create_map_3();
+using Map_0 = std::map<int, hard>;
+
+using CA_0 = CustomAllocator<std::pair<const int, hard>>;
+using Map_1 = std::map<int, hard, std::less<int>, CA_0>;
+
+using Container_0 = CustomContainer<hard>;
+
+using CA_1 = CustomAllocator<hard>;
+using Container_1 = CustomContainer<hard, CA_1>;
+
+Map_0 create_map_0();
+Map_1 create_map_1();
+Container_0 create_container_0();
+Container_1 create_container_1();
